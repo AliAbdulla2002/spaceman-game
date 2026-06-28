@@ -1,0 +1,49 @@
+My name: Ali Saleh M.Abdulla
+The Game Name: SpaceMan
+
+
+Pseudocode:
+
+- User enters their name.
+
+- Show a random word is chosen from A - Z.
+
+- The user clicks letters to guess the word.
+
+- The Game remaining attempts starting at 6 are displayed.
+
+- Game show spaceman image updates after each incorrect guess words.
+
+- The game show status of user Win or Game Over.
+
+
+The Variables used: 1- NameOfCurentPlayer, Win, Lose, GameTimeout.
+
+Data Structure: A set of items (Correct items) arry [secretWords], And other guessed letters array [guessedLetters],
+The image array used for the game if the wrrong guessedLetters [SpacemanImage], The game sound arry [gameSound].
+
+
+User Stories:
+
+The use can put the name before start the game.
+
+The user can start the game if clicked the on the letters.
+
+as the user the game show how many try to guess word.
+
+The user can see the status of game if they win or lose.
+
+The user can start a new round.
+
+
+Other Additions:
+
+Background music 
+
+Butoon can Mute the music
+
+click sound effect
+
+win or lose sound effect
+
+Dark or light mood user can change
