@@ -26,9 +26,15 @@ function startGame() {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
     word = Words [ Math.floor ( Math.random() * Words.length ) ];
     // Make the dashs by word length 
-    wordsEl.textContent = ("_ ".repeat)(word.length);
+    let emptylines = "";
+    for (let i = 0; i < word.length; i++) {
+        emptylines += "_ "
+    }
+    wordsEl.textContent = emptylines
+
     console.log("The Secret words is: "+ word);
     
 }
 
 startGame();
+
