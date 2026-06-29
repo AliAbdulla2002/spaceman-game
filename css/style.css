@@ -49,7 +49,7 @@ body
 .keyboard 
 {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* from the w3school */
+    grid-template-columns: repeat(7, 1fr); /*from the w3school*/
     gap: 8px;
     margin-top: 20px;
 }
