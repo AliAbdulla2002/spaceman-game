@@ -1,4 +1,4 @@
-body 
+body
 {
     display: flex;
     justify-content: center;
@@ -32,17 +32,49 @@ body
     background-color: #f0f0f0;
 }
 
-.word 
+/* the image itself should not get bigger than the box, kept it simple */
+.loseimg img
+{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.words
 {
     font-size: 24px;
     margin: 20px;
-    font-weight: 20px;
+    font-weight: bold;
+    letter-spacing: 4px;
 }
 
-.keyboard 
+.keyboard
 {
     display: grid;
     grid-template-columns: repeat(7, 1fr); /*from the w3school*/
     gap: 8px;
     margin-top: 20px;
+}
+
+.letters:disabled
+{
+    background-color: #ddd;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.instructions-link
+{
+    display: inline-block;
+    margin-left: 8px;
+    padding: 6px 12px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    text-decoration: none;
+    color: black;
+}
+
+.instructions-list
+{
+    text-align: left;
+    line-height: 1.6;
 }
