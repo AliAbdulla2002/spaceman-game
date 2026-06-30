@@ -18,12 +18,16 @@ let isDarkMode = false
 let isMuted = false
 
 
+
 /*------------------------ Cached Element References ------------------------*/
 // link the keyboard html to js
 const keyboardEl = document.querySelector('#keyboard')
 const wordsEl = document.querySelector('#words')
 const TheLetters = document.querySelectorAll('.letters')
-console.log(TheLetters)
+const remainingAttempsEl = document.querySelector('.attempts')
+
+// console.log(remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`)
+// console.log(TheLetters) // just smoke test
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -73,23 +77,33 @@ function output() {
     let displayString = ""
     for (let i = 0; i < LettersArray.length; i++) {
         if (guessed.includes(LettersArray[i])) {
-            displayString += LettersArray[i] + " "
+            displayString += LettersArray[i] + (" ")
         } else {
-            displayString += "_ "
+            displayString += ("_ ")
         }
     }
-    wordsEl.textContent = displayString
+    wordsEl.textContent = (displayString)
 }
 
 
-// This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps
+// This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps and print game over
 function guess(letter) {
+    if (remainingAttemps <= 0) {
+        return
+    } 
     guessed.push(letter)
     if (LettersArray.includes(letter) === false) {
         remainingAttemps--
+        console.log(remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`)
         console.log("your remaining attemps: " + remainingAttemps)
     }
     output()
+
+    if (remainingAttemps === 0) {
+        lose = true
+        console.log(remainingAttempsEl.textContent = "Game Over!")
+
+    }
 }
 
 startGame();
