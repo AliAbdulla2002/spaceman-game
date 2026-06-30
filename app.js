@@ -1,22 +1,25 @@
 /*-------------------------------- Constants --------------------------------*/
 // The words
 const Words = ['PLANET', 'ROCKET', 'ORBITS', 'SPACEY', 'GALAXY', 'STARRY', 'PYTHON', 'CODING', 'FRIEND', 'BEAUTY']
+const MAX = 6
+const stageImages = [
+    'assets/stage-0.png',
+    'assets/stage-1.png',
+    'assets/stage-2.png',
+    'assets/stage-3.png',
+    'assets/stage-4.png',
+    'assets/stage-5.png',
+    'assets/stage-6.png',
+]
 
 /*-------------------------------- Variables --------------------------------*/
 
-let nameOfCurrentUser = ""
 let win = false
 let lose = false
-let gameTimeOut
 let guessed = []
-let remainingAttemps = 6
+let remainingAttemps = MAX
 let word = ""
 let LettersArray = []
-
-// Additional
-let isDarkMode = false
-let isMuted = false
-
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -25,9 +28,9 @@ const keyboardEl = document.querySelector('#keyboard')
 const wordsEl = document.querySelector('#words')
 const TheLetters = document.querySelectorAll('.letters')
 const remainingAttempsEl = document.querySelector('.attempts')
+const spacemanImgEl = document.querySelector('#spacemanImg')
+const resetBtnEl = document.querySelector('.reset')
 
-// console.log(remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`)
-// console.log(TheLetters) // just smoke test
 
 /*----------------------------- Event Listeners -----------------------------*/
 
