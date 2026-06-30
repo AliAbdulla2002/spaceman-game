@@ -72,7 +72,7 @@ function startGame() {
     console.log("The Secret words is: " + word) // just a smoke test for the function, and if i want to cheat 
 }
 
-// 
+// Add the letters on the lines
 function output() {
     let displayString = ""
     for (let i = 0; i < LettersArray.length; i++) {
@@ -83,6 +83,12 @@ function output() {
         }
     }
     wordsEl.textContent = (displayString)
+}
+
+// just swaps the spaceman image based on how many wrong attempts are used
+function updateImage() {
+    let wrongGuesses = MAX_ATTEMPTS - remainingAttemps
+    spacemanImgEl.src = stageImages[wrongGuesses]
 }
 
 // This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps 
