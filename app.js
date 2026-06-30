@@ -11,6 +11,7 @@ let gameTimeOut
 let guessed = []
 let remainingAttemps = 6
 let word = ""
+let LettersArray = []
 
 // Additional
 let isDarkMode = false
@@ -36,25 +37,6 @@ TheLetters.forEach(function(item)
     });
 });
 
-/*-------------------------------- Functions --------------------------------*/
-// To the game select random word and make the line with the length of the words
-// here I research about the floor 👇
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
-function startGame() {
-    word = Words [ Math.floor ( Math.random() * Words.length ) ]
-    
-    // Make the dashs by word length 
-    let emptylines = "";
-    for (let i = 0; i < word.length; i++) 
-    {
-        emptylines += "_ "
-    }
-    wordsEl.textContent = emptylines
-
-    console.log("The Secret words is: "+ word) // just a smoke test for the function, and if i want to cheat 
-}
-
-
 // console log for every letters
 TheLetters.forEach(function(item){
 item.addEventListener('click',function(event){
@@ -62,5 +44,52 @@ item.addEventListener('click',function(event){
 })
 })
 
+/*-------------------------------- Functions --------------------------------*/
+
+function randomWord(listName) {
+    let randomIndex = Math.floor(Math.random() * listName.length)
+    return listName[randomIndex]
+}
+
+function seprateSeceretLetters() {
+    for (let i = 0; i < word.length; i++) {
+        LettersArray.push(word[i])
+    }
+}
+
+// To the game select random word and make the line with the length of the words
+// here I research about the floor :point_down:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+function startGame() {
+    word = randomWord(Words)
+    seprateSeceretLetters()
+    output()
+
+    console.log("The Secret words is: "+ word) // just a smoke test for the function, and if i want to cheat 
+}
+
+// 
+function output() {
+    let displayString = ""
+    for (let i = 0; i < LettersArray.length; i++) {
+        if (guessed.includes(LettersArray[i])) {
+            displayString += LettersArray[i] + " "
+        } else {
+            displayString += "_ "
+        }
+    }
+    wordsEl.textContent = displayString
+}
+
+
+// This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps
+function guess(letter) {
+    guessed.push(letter)
+    if (LettersArray.includes(letter) === false) {
+        remainingAttemps--
+        console.log("your remaining attemps: " + remainingAttemps)
+    }
+    output()
+}
 
 startGame();
