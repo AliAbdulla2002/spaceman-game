@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 // The words
-const Words = ['PLANET', 'ROCKET', 'ORBITS', 'SPACEY', 'GALAXY','STARRY', 'PYTHON', 'CODING', 'FRIEND', 'BEAUTY']
+const Words = ['PLANET', 'ROCKET', 'ORBITS', 'SPACEY', 'GALAXY', 'STARRY', 'PYTHON', 'CODING', 'FRIEND', 'BEAUTY']
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -32,30 +32,29 @@ const remainingAttempsEl = document.querySelector('.attempts')
 /*----------------------------- Event Listeners -----------------------------*/
 
 // If i used lowerCase letters not working so should be capital as the words
-TheLetters.forEach(function(item) 
-{
-    item.addEventListener('click', function() 
-    {
+TheLetters.forEach(function (item) {
+    item.addEventListener('click', function () {
         let clickedLetter = item.textContent.toUpperCase()
         guess(clickedLetter)
     });
 });
 
 // console log for every letters
-TheLetters.forEach(function(item){
-item.addEventListener('click',function(event){
-    console.log("You are clicked: " + event.target.textContent)
-})
+TheLetters.forEach(function (item) {
+    item.addEventListener('click', function (event) {
+        console.log("You are clicked: " + event.target.textContent)
+    })
 })
 
 /*-------------------------------- Functions --------------------------------*/
 
-function randomWord(listName) {
-    let randomIndex = Math.floor(Math.random() * listName.length)
-    return listName[randomIndex]
+function random(array) {
+    let randomIndex = Math.floor(Math.random() * array.length)
+    return array[randomIndex]
+    
 }
 
-function seprateSeceretLetters() {
+function lettercut() {
     for (let i = 0; i < word.length; i++) {
         LettersArray.push(word[i])
     }
@@ -65,11 +64,11 @@ function seprateSeceretLetters() {
 // here I research about the floor :point_down:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
 function startGame() {
-    word = randomWord(Words)
-    seprateSeceretLetters()
+    word = random(Words)
+    lettercut()
     output()
 
-    console.log("The Secret words is: "+ word) // just a smoke test for the function, and if i want to cheat 
+    console.log("The Secret words is: " + word) // just a smoke test for the function, and if i want to cheat 
 }
 
 // 
@@ -85,25 +84,49 @@ function output() {
     wordsEl.textContent = (displayString)
 }
 
-
-// This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps and print game over
+// This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps 
+// and print game over if the user won will print you win
 function guess(letter) {
     if (remainingAttemps <= 0) {
         return
-    } 
+    }
     guessed.push(letter)
     if (LettersArray.includes(letter) === false) {
         remainingAttemps--
         console.log(remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`)
         console.log("your remaining attemps: " + remainingAttemps)
     }
+
     output()
 
-    if (remainingAttemps === 0) {
-        lose = true
-        console.log(remainingAttempsEl.textContent = "Game Over!")
-
+    win = true
+    for (let i = 0; i < LettersArray.length; i++) {
+        if (guessed.includes(LettersArray[i]) === false) {
+            win = false
+            
+        }
     }
+    
+    if (win === true) {
+        remainingAttempsEl.textContent = 'You Win !!!'
+    } else if (remainingAttemps === 0) {
+        lose = true
+        remainingAttempsEl.textContent = "Game Over !!!"
+    }else
+        console.log("Game Over!")
 }
 
-startGame();
+// function resetGame() {
+//     win = false
+//     lose = false
+//     remainingAttemps = 6
+//     guessed = []
+//     LettersArray = []
+
+//     TheLetters.forEach(function (item) {
+//         item.disabled = false
+//     })
+//     startGame()
+// }
+
+startGame()
