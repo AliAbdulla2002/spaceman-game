@@ -58,7 +58,7 @@ function startGame() {
 // console log for every letters
 TheLetters.forEach(function(item){
 item.addEventListener('click',function(event){
-    console.log(event.target.textContent)
+    console.log("You are clicked: " + event.target.textContent)
 })
 })
 
