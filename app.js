@@ -39,14 +39,12 @@ TheLetters.forEach(function (item) {
     item.addEventListener('click', function () {
         let clickedLetter = item.textContent.toUpperCase()
         guess(clickedLetter)
+        item.disabled = true
     });
-});
+})
 
-// console log for every letters
-TheLetters.forEach(function (item) {
-    item.addEventListener('click', function (event) {
-        console.log("You are clicked: " + event.target.textContent)
-    })
+resetBtnEl.addEventListener('click', function () {
+    resetGame()
 })
 
 /*-------------------------------- Functions --------------------------------*/
