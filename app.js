@@ -21,17 +21,17 @@ let isMuted = false
 // link the keyboard html to js
 const keyboardEl = document.querySelector('#keyboard')
 const wordsEl = document.querySelector('#words')
-const TheLetters = document.querySelectorAll('#keyboard button')
+const TheLetters = document.querySelectorAll('.letters')
+console.log(TheLetters)
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-// If I used lowerCase letters not working so should be capital as the words
+// If i used lowerCase letters not working so should be capital as the words
 TheLetters.forEach(function(item) 
 {
     item.addEventListener('click', function() 
     {
         let clickedLetter = item.textContent.toUpperCase()
-        item.disabled = true
         guess(clickedLetter)
     });
 });
@@ -51,26 +51,16 @@ function startGame() {
     }
     wordsEl.textContent = emptylines
 
-    console.log("The Secret words is: "+ word) // just a smoke test for the function, and if i want cheat 
+    console.log("The Secret words is: "+ word) // just a smoke test for the function, and if i want to cheat 
 }
 
 
-// Function that display the word on the lines
-function WordDisplay() {
-    let WordDisplay = "" 
-    for (let i = 0; i < word.length; i++) {
-        if (guessed.includes(word[i])) 
-        {
-            WordDisplay += word[i] + " "
-        } else {
-            WordDisplay += "_ "
-        }
-    }
-    
-    wordsEl.textContent = WordDisplay
-}
-
-// Notice : The guessed does not have the referance so far
+// console log for every letters
+TheLetters.forEach(function(item){
+item.addEventListener('click',function(event){
+    console.log(event.target.textContent)
+})
+})
 
 
 startGame();
