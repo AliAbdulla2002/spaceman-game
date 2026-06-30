@@ -113,7 +113,7 @@ function guess(letter) {
         lose = true
         remainingAttempsEl.textContent = "Game Over !!!"
     }else
-        console.log("Game Over!")
+        console.log("Game Over !!!")
 }
 
 // function resetGame() {

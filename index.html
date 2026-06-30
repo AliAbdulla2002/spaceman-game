@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hangman</title>
+    <title>Spaceman</title>
 </head>
 <body>
 
@@ -16,23 +16,21 @@
 
         </div>
 
-        <h1>Hangman</h1>
+        <h1>Spaceman</h1>
 
         <!-- just I want to change number by js -->
         <p class="attempts">You have 6 attempts remaining</p>
 
-
         <!-- Here the box of the spaceman images  -->
+        <!-- Made it id not class because i only have ONE image showing at a time, and i will swap the src with js -->
         <div class="loseimg">
-            <!-- <img src="assets/stage-zero.png" alt="The default stage of spaceman"> -->
+            <img id="spacemanImg" src="assets/stage-0.png" alt="Spaceman hangman stage, no wrong guesses yet">
         </div>
-
 
         <!-- The lines of words -->
         <div id="words" class="words">
 
         </div>
-
 
         <!-- The keyboard -->
         <div id="keyboard" class="keyboard">
@@ -69,8 +67,14 @@
         <div>
             <button class="reset">Reset</button>
             <button>mute game</button>
+
+            <br />
+            <br />
+
+            <!-- this is just a normal link, not js navigation, the instructions are on their own page -->
+            <a href="instructions.html" class="instructions-link">How to play?</a>
         </div>
-        
+
         </div>
 </body>
 </html>
