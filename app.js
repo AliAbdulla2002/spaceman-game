@@ -30,6 +30,7 @@ const TheLetters = document.querySelectorAll('.letters')
 const remainingAttempsEl = document.querySelector('.attempts')
 const spacemanImgEl = document.querySelector('#spacemanImg')
 const resetBtnEl = document.querySelector('.reset')
+// const Backgroundsound = new Audio(`../assets/audio/${evt.target.id}.mp3`)
 
 /*----------------------------- Event Listeners -----------------------------*/
 
