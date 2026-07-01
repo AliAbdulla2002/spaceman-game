@@ -34,33 +34,32 @@ const resetBtnEl = document.querySelector('.reset')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-// If i used lowerCase letters not working so should be capital as the words
 TheLetters.forEach(function (item) {
     item.addEventListener('click', function () {
-        let clickedLetter = item.textContent.toUpperCase()
+        let clickedLetter = item.textContent
         guess(clickedLetter)
         item.disabled = true
     });
-})
+});
 
 resetBtnEl.addEventListener('click', function () {
     resetGame()
 })
 
+// The challenge here if the user type lowercasse the game not response cuse i wrote the button by uppercase
 document.addEventListener('keydown', function(event){
     let pressedkey = event.key.toUpperCase()
 
     if (pressedkey.length === 1 && pressedkey >= 'A' && pressedkey <= 'Z'){
-        guess(pressedkey)
+        guess(pressedkey);
     }
 
     TheLetters.forEach(function(item){
-        if(item.textContent.toUpperCase() === pressedkey){
+        if(item.textContent === pressedkey){
             item.disabled = true
         }
-    })
-
-})
+    });
+});
 
 /*-------------------------------- Functions --------------------------------*/
 function random(array) {
@@ -105,10 +104,9 @@ function updateImage() {
 // This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps
 // and print game over if the user won will print you win
 function guess(letter) {
-    if (remainingAttemps <= 0 || win === true) {
+    if (remainingAttemps <= 0 || win) {
         return
     }
-
 
     if (guessed.includes(letter)) {
         return
@@ -116,7 +114,7 @@ function guess(letter) {
 
     guessed.push(letter)
 
-    if (LettersArray.includes(letter) === false) {
+    if (!LettersArray.includes(letter)) {
         remainingAttemps--
         remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`
         updateImage()
@@ -126,12 +124,12 @@ function guess(letter) {
 
     win = true
     for (let i = 0; i < LettersArray.length; i++) {
-        if (guessed.includes(LettersArray[i]) === false) {
+        if (!guessed.includes(LettersArray[i])) {
             win = false
         }
     }
 
-    if (win === true) {
+    if (win) {
         remainingAttempsEl.textContent = 'You Win !!!'
         disableAllLetters()
     } else if (remainingAttemps === 0) {
