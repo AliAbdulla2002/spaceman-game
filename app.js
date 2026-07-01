@@ -91,17 +91,23 @@ function updateImage() {
     spacemanImgEl.src = stageImages[wrongGuesses]
 }
 
-// This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps 
+// This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps
 // and print game over if the user won will print you win
 function guess(letter) {
-    if (remainingAttemps <= 0) {
+    if (remainingAttemps <= 0 || win === true) {
         return
     }
+
+    if (guessed.includes(letter)) {
+        return
+    }
+
     guessed.push(letter)
+
     if (LettersArray.includes(letter) === false) {
         remainingAttemps--
-        console.log(remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`)
-        console.log("your remaining attemps: " + remainingAttemps)
+        remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`
+        updateImage()
     }
 
     output()
@@ -110,30 +116,17 @@ function guess(letter) {
     for (let i = 0; i < LettersArray.length; i++) {
         if (guessed.includes(LettersArray[i]) === false) {
             win = false
-            
         }
     }
-    
+
     if (win === true) {
         remainingAttempsEl.textContent = 'You Win !!!'
+        disableAllLetters()
     } else if (remainingAttemps === 0) {
         lose = true
         remainingAttempsEl.textContent = "Game Over !!!"
-    }else
-        console.log("Game Over !!!")
+        disableAllLetters()
+    }
 }
-
-// function resetGame() {
-//     win = false
-//     lose = false
-//     remainingAttemps = 6
-//     guessed = []
-//     LettersArray = []
-
-//     TheLetters.forEach(function (item) {
-//         item.disabled = false
-//     })
-//     startGame()
-// }
 
 startGame()
