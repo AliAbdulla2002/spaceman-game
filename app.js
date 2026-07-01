@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-// The words
+// The words array
 const Words = ['PLANET', 'ROCKET', 'ORBITS', 'SPACEY', 'GALAXY', 'STARRY', 'PYTHON', 'CODING', 'FRIEND', 'BEAUTY']
 
 const MAX_ATTEMPTS = 6
@@ -48,6 +48,8 @@ resetBtnEl.addEventListener('click', function () {
 
 /*-------------------------------- Functions --------------------------------*/
 
+// I think i will change this function
+
 function random(array) {
     let randomIndex = Math.floor(Math.random() * array.length)
     return array[randomIndex]
@@ -60,17 +62,15 @@ function lettercut() {
 }
 
 // To the game select random word and make the line with the length of the words
-// here I research about the floor :point_down:
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+// here I research about the floor from Mdn https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
 function startGame() {
     word = random(Words)
     lettercut()
     output()
-
     console.log("The Secret words is: " + word) // just a smoke test for the function, and if i want to cheat
 }
 
-//  
+
 function output() {
     let displayString = ""
     for (let i = 0; i < LettersArray.length; i++) {
@@ -81,6 +81,9 @@ function output() {
         }
     }
     wordsEl.textContent = (displayString)
+    //console.log(remainingAttemps) smoke test to remaining attemps
+    // console.log(guessed) smoke test to gussed
+    // console.log(displayString) // show the output on the line
 }
 
 // just swaps the spaceman image based on how many wrong attempts are used
@@ -144,7 +147,7 @@ function resetGame() {
     LettersArray = []
 
     remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`
-    spacemanImgEl.append = stageImages[0]
+    spacemanImgEl.src = stageImages[0]
 
     TheLetters.forEach(function (item) {
         item.disabled = false
