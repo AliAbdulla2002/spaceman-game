@@ -1,6 +1,11 @@
 /*-------------------------------- Constants --------------------------------*/
 // The words array
-const Words = ['PLANET', 'ROCKET', 'ORBITS', 'SPACEY', 'GALAXY', 'STARRY', 'PYTHON', 'CODING', 'FRIEND', 'BEAUTY']
+export const WORDS = [
+    'planet', 'rocket', 'galaxy', 'system', 'meteor',
+    'cosmos', 'orbits', 'nebula', 'apollo', 'astral',
+    'comets', 'saturn', 'uranus', 'launch', 'module',
+    'sphere', 'flight', 'voyage', 'starry', 'spacey'
+]
 
 const MAX_ATTEMPTS = 6
 const stageImages = [
