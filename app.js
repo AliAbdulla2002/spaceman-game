@@ -1,7 +1,8 @@
 /*-------------------------------- Constants --------------------------------*/
 // The words
 const Words = ['PLANET', 'ROCKET', 'ORBITS', 'SPACEY', 'GALAXY', 'STARRY', 'PYTHON', 'CODING', 'FRIEND', 'BEAUTY']
-const MAX = 6
+
+const MAX_ATTEMPTS = 6
 const stageImages = [
     'assets/stage-0.png',
     'assets/stage-1.png',
@@ -17,20 +18,18 @@ const stageImages = [
 let win = false
 let lose = false
 let guessed = []
-let remainingAttemps = MAX
+let remainingAttemps = MAX_ATTEMPTS
 let word = ""
 let LettersArray = []
 
-
 /*------------------------ Cached Element References ------------------------*/
-// link the keyboard html to js
+// link html to js
 const keyboardEl = document.querySelector('#keyboard')
 const wordsEl = document.querySelector('#words')
 const TheLetters = document.querySelectorAll('.letters')
 const remainingAttempsEl = document.querySelector('.attempts')
 const spacemanImgEl = document.querySelector('#spacemanImg')
 const resetBtnEl = document.querySelector('.reset')
-
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -52,7 +51,6 @@ resetBtnEl.addEventListener('click', function () {
 function random(array) {
     let randomIndex = Math.floor(Math.random() * array.length)
     return array[randomIndex]
-    
 }
 
 function lettercut() {
@@ -69,10 +67,10 @@ function startGame() {
     lettercut()
     output()
 
-    console.log("The Secret words is: " + word) // just a smoke test for the function, and if i want to cheat 
+    console.log("The Secret words is: " + word) // just a smoke test for the function, and if i want to cheat
 }
 
-// Add the letters on the lines
+//  
 function output() {
     let displayString = ""
     for (let i = 0; i < LettersArray.length; i++) {
@@ -97,6 +95,7 @@ function guess(letter) {
     if (remainingAttemps <= 0 || win === true) {
         return
     }
+
 
     if (guessed.includes(letter)) {
         return
@@ -127,6 +126,31 @@ function guess(letter) {
         remainingAttempsEl.textContent = "Game Over !!!"
         disableAllLetters()
     }
+}
+
+// disable the whole keyboard once win or lose happens
+function disableAllLetters() {
+    TheLetters.forEach(function (item) {
+        item.disabled = true
+    })
+}
+
+// resets all the state back to the start and gets a new random word
+function resetGame() {
+    win = false
+    lose = false
+    remainingAttemps = MAX_ATTEMPTS
+    guessed = []
+    LettersArray = []
+
+    remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`
+    spacemanImgEl.append = stageImages[0]
+
+    TheLetters.forEach(function (item) {
+        item.disabled = false
+    })
+
+    startGame()
 }
 
 startGame()
