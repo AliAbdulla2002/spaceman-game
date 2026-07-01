@@ -35,7 +35,10 @@ const TheLetters = document.querySelectorAll('.letters')
 const remainingAttempsEl = document.querySelector('.attempts')
 const spacemanImgEl = document.querySelector('#spacemanImg')
 const resetBtnEl = document.querySelector('.reset')
-// const Backgroundsound = new Audio(`../assets/audio/${evt.target.id}.mp3`)
+const muteBtnEl = document.querySelector('.Mute')
+const backgroundMusic = new Audio('assets/bg.mp3')
+backgroundMusic.loop = true 
+backgroundMusic.volume = 0.1
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -63,17 +66,26 @@ document.addEventListener('keydown', function(event){
         if(item.textContent === pressedkey){
             item.disabled = true
         }
-    });
-});
+    })
+})
 
+
+muteBtnEl.addEventListener('click', function () {
+    if (backgroundMusic.muted === false) {
+        backgroundMusic.muted = true
+        muteBtnEl.textContent = 'Unmute'
+    } else {
+        backgroundMusic.muted = false
+        muteBtnEl.textContent = 'Mute'
+    }
+})
 /*-------------------------------- Functions --------------------------------*/
+// To the game select random word and make the line with the length of the words
+// here I research about the floor from Mdn https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
 function random(array) {
     return array[Math.floor(Math.random() * array.length)]
 }
 
-
-// To the game select random word and make the line with the length of the words
-// here I research about the floor from Mdn https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
 function startGame() {
     word = random(Words)
     LettersArray = word.split('')
@@ -168,5 +180,17 @@ function resetGame() {
 
     startGame()
 }
+
+
+function startmusic() {
+    word = random(Words)
+    LettersArray = word.split('')
+    output()
+    console.log("The Secret words is: " + word) 
+    backgroundMusic.play()
+}
+
+
+startmusic()
 
 startGame()
