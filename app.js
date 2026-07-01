@@ -63,25 +63,16 @@ document.addEventListener('keydown', function(event){
 })
 
 /*-------------------------------- Functions --------------------------------*/
-
-// I think i will change this functions
-
 function random(array) {
-    let randomIndex = Math.floor(Math.random() * array.length)
-    return array[randomIndex]
+    return array[Math.floor(Math.random() * array.length)]
 }
 
-function lettercut() {
-    for (let i = 0; i < word.length; i++) {
-        LettersArray.push(word[i])
-    }
-}
 
 // To the game select random word and make the line with the length of the words
 // here I research about the floor from Mdn https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
 function startGame() {
     word = random(Words)
-    lettercut()
+    LettersArray = word.split('')
     output()
     console.log("The Secret words is: " + word) // just a smoke test for the function, and if i want to cheat
 }
@@ -89,23 +80,26 @@ function startGame() {
 
 function output() {
     let displayString = ""
-    for (let i = 0; i < LettersArray.length; i++) {
-        if (guessed.includes(LettersArray[i])) {
-            displayString += LettersArray[i] + (" ")
+        for (let letter of LettersArray) {
+        if (guessed.includes(letter)) {
+            displayString += letter + (" ")
         } else {
             displayString += ("_ ")
         }
     }
-    wordsEl.textContent = (displayString)
+
+    wordsEl.textContent = displayString;
+
     //console.log(remainingAttemps) smoke test to remaining attemps
     // console.log(guessed) smoke test to gussed
     // console.log(displayString) // show the output on the line
 }
 
 // just swaps the spaceman image based on how many wrong attempts are used
+// set attribute
 function updateImage() {
     let wrongGuesses = MAX_ATTEMPTS - remainingAttemps
-    spacemanImgEl.src = stageImages[wrongGuesses]
+    spacemanImgEl.setAttribute('src', stageImages[wrongGuesses])
 }
 
 // This function if the user clicked on the right letters it will console the letters if not will decrease the remaining attemps
@@ -163,7 +157,7 @@ function resetGame() {
     LettersArray = []
 
     remainingAttempsEl.textContent = `You have ${remainingAttemps} attempts remaining`
-    spacemanImgEl.src = stageImages[0]
+    updateImage()
 
     TheLetters.forEach(function (item) {
         item.disabled = false
