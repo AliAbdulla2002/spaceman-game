@@ -46,9 +46,24 @@ resetBtnEl.addEventListener('click', function () {
     resetGame()
 })
 
+document.addEventListener('keydown', function(event){
+    let pressedkey = event.key.toUpperCase()
+
+    if (pressedkey.length === 1 && pressedkey >= 'A' && pressedkey <= 'Z'){
+        guess(pressedkey)
+    }
+
+    TheLetters.forEach(function(item){
+        if(item.textContent.toUpperCase() === pressedkey){
+            item.disabled = true
+        }
+    })
+
+})
+
 /*-------------------------------- Functions --------------------------------*/
 
-// I think i will change this function
+// I think i will change this functions
 
 function random(array) {
     let randomIndex = Math.floor(Math.random() * array.length)
